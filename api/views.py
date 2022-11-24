@@ -21,7 +21,7 @@ def product(request):
     pClasspath = "C:/Users/JYLEE/Desktop/yolomodel/classes (1).names" 
     ############
     
-       
+
     ## 리액트에서 받을 것 : test
     # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test22.jpg" # radish success testcase
     pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test26.jpg"  # pork success testcase
