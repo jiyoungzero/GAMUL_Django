@@ -5,3 +5,5 @@ class productSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+        import requests
+
