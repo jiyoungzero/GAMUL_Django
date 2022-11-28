@@ -39,10 +39,13 @@ def product(request):
         pCfgpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom (3).cfg"
         pClasspath = "C:/Users/JYLEE/Desktop/yolomodel/classes (1).names" 
         ############        
-        file = request.FILES["file"]
+        print("여기 파일:",request.FILES)
+        file = request.FILES["data[0][raw]"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
+        
+        print(file)
         fs = FileSystemStorage("./imgs")
         filename = fs.save("object.jpg", file)
-        pInputImage = "C:/Users/JYLEE/Desktop/gamul_test/gamul/backend/project/imgs/"+filename
+        pInputImage = "C:/Users/JYLEE/Desktop/gamul_Django/imgs/"+filename
         
         # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test22.jpg" # radish success testcase
         # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test26.jpg"  # pork success testcase
@@ -107,6 +110,19 @@ def product(request):
                 cv2.putText(
                     img, label + str(int(100*confidences[i])), (x, y + 30), font, 1, color, 3)
                 
+                if label == "radish":
+                    label = "무"
+                elif label == "pork":
+                    label = "돼지고기"
+                elif label == "egg":
+                    label = "달걀"
+                elif label == "onion":
+                    label = "양파"
+                elif label == "pear":
+                    label = "배"
+                elif label == "apple":
+                    label = "사과"
+                    
                 Product.objects.create(
                     name = label,
                     confidence = int(100*confidences[i])
@@ -120,7 +136,7 @@ def product(request):
                 "status":"200", # 성공
                 "success":"true",
                 "message":"Successfully Detect Product",
-                'data': serializer.data,
+                "data": serializer.data,
             }
         else:
             context = {
@@ -136,6 +152,15 @@ def product(request):
         # 저장됐던 사진 다시 삭제
         os.remove(os.path.join("./imgs", pInputImage))
         
+        
+        # cors error
+        # response = HttpResponse('success')
+        # response["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+        # response["Access-Control-Allow-Origin"] = "*"
+        # response["Acess-Control-Max-Age"] = "1000"
+        # response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+        
+        print(context)
         return Response(data=context)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
