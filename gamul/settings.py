@@ -49,9 +49,7 @@ MIDDLEWARE = [
     #react
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    
-    
-    
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,20 +93,20 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 
 # Internationalization
@@ -143,13 +141,15 @@ REST_FRAMEWORK = {
 
 
 
-CORS_ORIGIN_WHITELIST = (    
+CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000', 
     'http://localhost:3000', 
     'http://192.168.98.168:3000',
+    'http://172.20.10.4:3000',
+    
     'http://127.0.0.1:8000',
     'http://10.46.147.89:8000',
-)
+]
 CORS_REPLACE_HTTPS_REFERER = True
 # CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -157,15 +157,14 @@ CORS_ALLOW_CREDENTIALS = True
 # # CORS_ORIGIN_ALLOW =True
 
 
-CORS_ALLOW_METHODS = (
-    
+CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
     'OPTIONS',
     'PATCH',
     'POST',
     'PUT',
-)
+]
 
 CORS_ALLOW_HEADERS = (
     'accept',
