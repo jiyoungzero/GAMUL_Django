@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 import cv2
 import numpy as np
 import json
+import os
 from rest_framework import status
 from .models import Product
 from .serializers import productSerializer
@@ -13,6 +14,7 @@ from django.core.files.storage import FileSystemStorage
 @require_POST
 @api_view(["POST"]) 
 def product(request):
+
     if request.method == 'POST':
         # request.header 
         # Content-Type: application/json
@@ -32,17 +34,15 @@ def product(request):
         # img_name = "dldk"
         # cv2.imwrite(img_name, img)
         
-        file = request.FILES["file"]
-        fs = FileSystemStorage()
-        filename = fs.save("ddd.jpg", file)
-        
-        
         ### 고정 ###
         pWeightpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom_final.weights"
         pCfgpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom (3).cfg"
         pClasspath = "C:/Users/JYLEE/Desktop/yolomodel/classes (1).names" 
-        ############r
-        pInputImage = "C:/Users/JYLEE/Desktop/gamul_Django/ddd.jpg"
+        ############        
+        file = request.FILES["file"]
+        fs = FileSystemStorage("./imgs")
+        filename = fs.save("object.jpg", file)
+        pInputImage = "C:/Users/JYLEE/Desktop/gamul_test/gamul/backend/project/imgs/"+filename
         
         # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test22.jpg" # radish success testcase
         # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test26.jpg"  # pork success testcase
@@ -132,6 +132,9 @@ def product(request):
         # 다시 db clear하기
         for i in range(len(product)):  
             product.delete()
+            
+        # 저장됐던 사진 다시 삭제
+        os.remove(os.path.join("./imgs", pInputImage))
         
         return Response(data=context)
     else:
