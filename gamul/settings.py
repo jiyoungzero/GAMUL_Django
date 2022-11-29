@@ -144,11 +144,11 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000', 
     'http://localhost:3000', 
-    'http://192.168.98.168:3000',
+
     'http://172.20.10.2:3000',
+    # 'http://172.20.10.2:8000',
     
     'http://127.0.0.1:8000',
-    'http://10.46.147.89:8000',
 ]
 CORS_REPLACE_HTTPS_REFERER = True
 # CORS_ORIGIN_ALLOW_ALL = True
