@@ -38,9 +38,10 @@ def product(request):
         pWeightpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom_final.weights"
         pCfgpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom (3).cfg"
         pClasspath = "C:/Users/JYLEE/Desktop/yolomodel/classes (1).names" 
+        
         ############        
         print("여기 파일:",request.FILES)
-        file = request.FILES["data[0][raw]"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
+        file = request.FILES["file"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
         
         print(file)
         fs = FileSystemStorage("./imgs")
@@ -76,6 +77,11 @@ def product(request):
         class_ids = []
         confidences = []
         boxes = []
+        
+        # 중복 품목 제거를 위해 추가 
+        class_names = []
+        
+        
         for out in outs:
             for detection in out: 
                 scores = detection[5:]
@@ -110,6 +116,7 @@ def product(request):
                 cv2.putText(
                     img, label + str(int(100*confidences[i])), (x, y + 30), font, 1, color, 3)
                 
+                
                 if label == "radish":
                     label = "무"
                 elif label == "pork":
@@ -123,14 +130,27 @@ def product(request):
                 elif label == "apple":
                     label = "사과"
                     
-                Product.objects.create(
-                    name = label,
-                    confidence = int(100*confidences[i])
-                )
-        
+                class_names.append(label)
+                # print("종류:", class_names, set(class_names))
+                # # if label not in class_names:
+                # Product.objects.create(
+                #     name = label,
+                #     confidence = int(100*confidences[i])
+                # )
+                
+        set_class_names = set(class_names)
+        set_class_names = list(set_class_names)
+        for i in range(len(set_class_names)):
+            Product.objects.create(
+                name = set_class_names[i],
+                confidence = int(100*confidences[i])
+            )            
         
         product = Product.objects.all()
+        
+        
         serializer = productSerializer(product, many=True)
+
         if len(product) != 0:
             context = {
                 "status":"200", # 성공
