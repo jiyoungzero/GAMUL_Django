@@ -1,6 +1,6 @@
 FROM python:3.10.4
 
-ENV PYTHONVUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 RUN apt-get update
 RUN apt-get -y install libgl1-mesa-glx
