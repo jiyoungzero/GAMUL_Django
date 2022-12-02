@@ -48,7 +48,7 @@ Pillow==9.1.0
 pipenv==2022.3.28
 platformdirs==2.5.1
 protobuf==3.19.6
-psycopg2==2.9.5
+# psycopg2==2.9.5
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycodestyle==2.8.0
