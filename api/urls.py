@@ -3,5 +3,5 @@ from .views import *
 
 app_name = 'api'
 urlpatterns = [
-    path('detection', detection, name = "detection"),
+    path('objectdetection', objectdetection, name = "objectdetection"),
 ]

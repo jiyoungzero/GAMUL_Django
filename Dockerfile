@@ -6,13 +6,13 @@ RUN apt-get update
 RUN apt-get -y install libgl1-mesa-glx
 RUN apt-get -y install vim
 
-RUN mkdir /srv/docker-server 
+RUN mkdir /app 
 
 # docker안에 srv/docker-server 폴더 생성
-ADD . /srv/docker-server 
+ADD . /app 
 # 현재 디렉토리를 srv/docker-server 폴더에 복사
 
-WORKDIR /srv/docker-server
+WORKDIR /app
 # 작업디렉토리 설정
 
 RUN pip install --upgrade pip 

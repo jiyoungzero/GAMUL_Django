@@ -13,7 +13,7 @@ from django.core.files.storage import FileSystemStorage
 
 @require_POST
 @api_view(["POST"]) 
-def detection(request):
+def objectdetection(request):
 
     if request.method == 'POST':
         # request.header 
@@ -41,7 +41,7 @@ def detection(request):
         
         ############        
         print("여기 파일:",request.FILES)
-        file = request.FILES["data[0][raw]"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
+        file = request.FILES["file"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
         
         print(file)
         fs = FileSystemStorage("api/imgs")
