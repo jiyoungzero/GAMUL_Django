@@ -35,18 +35,18 @@ def product(request):
         # cv2.imwrite(img_name, img)
         
         ### 고정 ###
-        pWeightpath = "C:/Users/JYLEE/Desktop/gamul_Django/gamul/yolov3_custom_final.weights"
-        pCfgpath = "C:/Users/JYLEE/Desktop/gamul_Django/gamul/yolov3_custom (3).cfg"
-        pClasspath = "C:/Users/JYLEE/Desktop/gamul_Django/gamul/classes (1).names"
+        pWeightpath = "gamul/yolov3_custom_final.weights"
+        pCfgpath = "gamul/yolov3_custom (3).cfg"
+        pClasspath = "gamul/classes (1).names" 
         
         ############        
         print("여기 파일:",request.FILES)
-        file = request.FILES["data[0][raw]"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
+        file = request.FILES["file"] # 포스트맨은 file, 리액트에서 받을 때는 data[0][raw]
         
         print(file)
-        fs = FileSystemStorage("./imgs")
+        fs = FileSystemStorage("api/imgs")
         filename = fs.save("object.jpg", file)
-        pInputImage = "C:/Users/JYLEE/Desktop/gamul_Django/imgs/"+filename
+        pInputImage = "api/imgs/"+filename
         
         # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test22.jpg" # radish success testcase
         # pInputImage ="C:/Users/JYLEE/Desktop/gamul_Django/api/imgs/test26.jpg"  # pork success testcase
@@ -170,7 +170,7 @@ def product(request):
             product.delete()
             
         # 저장됐던 사진 다시 삭제
-        os.remove(os.path.join("./imgs", pInputImage))
+        os.remove(os.path.join("", pInputImage))
         
         
         # cors error
@@ -184,6 +184,13 @@ def product(request):
         return Response(data=context)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    
+
+            
+
+    
+    
     
     
 
