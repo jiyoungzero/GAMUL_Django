@@ -13,7 +13,7 @@ from django.core.files.storage import FileSystemStorage
 
 @require_POST
 @api_view(["POST"]) 
-def product(request):
+def detection(request):
 
     if request.method == 'POST':
         # request.header 
