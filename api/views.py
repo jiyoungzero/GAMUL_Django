@@ -35,9 +35,9 @@ def product(request):
         # cv2.imwrite(img_name, img)
         
         ### 고정 ###
-        pWeightpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom_final.weights"
-        pCfgpath = "C:/Users/JYLEE/Desktop/yolomodel/yolov3_custom (3).cfg"
-        pClasspath = "C:/Users/JYLEE/Desktop/yolomodel/classes (1).names" 
+        pWeightpath = "C:/Users/JYLEE/Desktop/gamul_Django/gamul/yolov3_custom_final.weights"
+        pCfgpath = "C:/Users/JYLEE/Desktop/gamul_Django/gamul/yolov3_custom (3).cfg"
+        pClasspath = "C:/Users/JYLEE/Desktop/gamul_Django/gamul/classes (1).names"
         
         ############        
         print("여기 파일:",request.FILES)
