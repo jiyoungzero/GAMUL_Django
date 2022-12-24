@@ -27,7 +27,7 @@
 
 > ## Django Stack 
 > <img src="https://img.shields.io/badge/yolov3-00FFFF?style=for-the-badge&logo=YOLO&logoColor=black"> <br>
-> framework | <img src="https://img.shields.io/badge/openCV-5C3EE8?style=for-the-badge&logo=OpenCV&logoColor=white">
+> YOLO framework | <img src="https://img.shields.io/badge/openCV-5C3EE8?style=for-the-badge&logo=OpenCV&logoColor=white">
 
 
 > ## 전체 프로젝트 Stack <br>
